@@ -547,8 +547,8 @@ const Index = () => {
                                             <>
                                                 
                                                 <h6><CountUp start={count - 5000} end={count} /> / {focData.totalCount} Records Downloaded</h6>
-                                                <div class="progress mb-1">
-                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={count} aria-valuemin="0" aria-valuemax={focData.totalCount} style={{width: `${Math.ceil(count / focData.totalCount * 100)}%`}}></div>
+                                                <div className="progress mb-1">
+                                                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={count} aria-valuemin="0" aria-valuemax={focData.totalCount} style={{width: `${Math.ceil(count / focData.totalCount * 100)}%`}}></div>
                                                 </div>
                                                 <h6 >{Math.ceil(count / focData.totalCount * 100)}% </h6>
                                             </>
