@@ -27,27 +27,27 @@ export const DashboardSidebar = (props) => {
     {
       href: '/billingInformation',
       icon: (<ChartBarIcon fontSize="small" />),
-      title: 'Billing Information'
+      title: 'Billing Data'
     },
-    {
-      href: '/collection',
-      icon: (<ChartBarIcon fontSize="small" />),
-      title: 'Collection'
-    },
-    {
-      href: '/nonPayingCustomer',
-      icon: (<ChartBarIcon fontSize="small" />),
-      title: 'Non Paying Consumer'
-    },
+    // {
+    //   href: '/collection',
+    //   icon: (<ChartBarIcon fontSize="small" />),
+    //   title: 'Collection'
+    // },
+    // {
+    //   href: '/nonPayingCustomer',
+    //   icon: (<ChartBarIcon fontSize="small" />),
+    //   title: 'Non Paying Consumer'
+    // },
     {
       href: '/focComplaint',
       icon: (<ChartBarIcon fontSize="small" />),
-      title: 'Foc Complaint'
+      title: 'Foc Complaint Data'
     },
     {
       href: '/customerComplaints',
       icon: (<ChartBarIcon fontSize="small" />),
-      title: 'Customer Complaints'
+      title: 'Billing Complaint Data'
     },
   ];
   

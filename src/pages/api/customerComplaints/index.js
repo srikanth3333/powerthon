@@ -42,54 +42,65 @@ export default async function handler(req, response) {
       }
 
       if(req.body.minutes) {
-        query2 = {...query2, "minutes": {$gte:req.body.minutes}}
+        query2 = {...query, "minutes": {$gte:parseInt(req.body.minutes)}}
       }
 
-      console.log(query)
-
-      let totalCount = await collection.find(query).count();
+      let data2 = await collection.aggregate(
+        [
+            {
+              $addFields: {
+                  "minutes": {
+                      $trunc: {
+                              $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 60000]
+                      }
+                  },
+              }
+            },
+            {$match:{$and:[query,query2]}},
+            {$group: {_id: null,count:{$sum:1}}},
+        ]).toArray();
+      console.log(data2)
       let data = await collection.aggregate(
         [
-            {$match:query},
+            {
+              $addFields: {
+                  "minutes": {
+                      $trunc: {
+                              $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 60000]
+                      }
+                  },
+              }
+            },
+            {$project: {
+                _id: 1,
+                "region_name": 1,
+                "circle_name": 1,
+                "division_name": 1,
+                "subdivision_name":1,
+                "dc_name": 1,
+                "ss_name": 1,
+                "feeder_name": 1,
+                "feeder_cat": 1,
+                "feeder_type": 1,
+                "block_name": 1,
+                "area_name": 1,
+                "colony_name": 1,
+                "full_complaint_id": 1,
+                "complaint_reg_dt": 1,
+                "closed_ts": 1,
+                "category": 1,
+                "type": 1,
+                "circle_name":1,
+                "ivrs":1,
+                "minutes":1,
+              },
+            },
+            {$match:{$and:[query,query2]}},
             {$skip:page*20},
             {$limit:20},
-            {$project: {
-                    _id: 0,
-                    "region_name": 1,
-                    "circle_name": 1,
-                    "division_name": 1,
-                    "subdivision_name":1,
-                    "dc_name": 1,
-                    "ss_name": 1,
-                    "feeder_name": 1,
-                    "feeder_cat": 1,
-                    "feeder_type": 1,
-                    "block_name": 1,
-                    "area_name": 1,
-                    "colony_name": 1,
-                    "full_complaint_id": 1,
-                    "complaint_reg_dt": 1,
-                    "closed_ts": 1,
-                    "category": 1,
-                    "type": 1,
-                    "circle_name":1,
-                    "ivrs":1,
-                    "minutes": {
-                        $trunc: {
-                                $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 60000]
-                         }
-                    },
-                    "hours": {
-                      $trunc: {
-                              $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 3600000]
-                       }
-                    },
-                },
-            },
-            {$match:{$and:[query2,query]}},
             {$sort:{"minutes":1}}
         ]).toArray();
-      response.status(200).json({totalCount:totalCount,data: data});
+      response.status(200).json({totalCount: data2 && data2[0] && data2[0].count ? data2[0].count : 0,data: data});
     }
     
 }
