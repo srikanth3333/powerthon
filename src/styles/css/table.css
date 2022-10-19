@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,500&display=swap');
+
+
+* {
+  /* font-family: 'Montserrat', sans-serif !important; */
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 400 !important;
+}
+
+.main-num {
+  font-size: 3em;
+  font-weight: 500 !important;
+}
+
+.css-2r9z59-MuiTableCell-root {
+    text-align: center !important;
+    text-align: center !important;
+    cursor: pointer;
+}
+
+.MUIDataTableHeadCell-contentWrapper-56 {
+    justify-content: center !important;
+}
+.css-fgyrrh-MuiTablePagination-displayedRows {
+    display: none !important;
+}
+
+/* input[type="date"] {
+    font-family: "Helvetica Neue",Helvetica,Arial;
+    display:block;
+    position:relative;
+    padding:1rem 3.5rem 1rem 0.75rem;
+    width: 100%;
+    font-size:1rem;
+    border:1px solid #8292a2;
+    border-radius:0.25rem;
+    background:
+      white
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E")
+      right 1rem
+      center
+      no-repeat;
+    
+    cursor:pointer;
+  }
+  input[type="date"]:focus {
+    outline:none;
+    border-color:#3acfff;
+    box-shadow:0 0 0 0.25rem rgba(0, 120, 250, 0.1);
+  }
+  
+  ::-webkit-datetime-edit {}
+  ::-webkit-datetime-edit-fields-wrapper {}
+  ::-webkit-datetime-edit-month-field:hover,
+  ::-webkit-datetime-edit-day-field:hover,
+  ::-webkit-datetime-edit-year-field:hover {
+    background:rgba(0, 120, 250, 0.1);
+  }
+  ::-webkit-datetime-edit-text {
+    opacity:0;
+  }
+  ::-webkit-clear-button,
+  ::-webkit-inner-spin-button {
+    display:none;
+  }
+  ::-webkit-calendar-picker-indicator {
+    position:absolute;
+    width:2.5rem;
+    height:100%;
+    top:0;
+    right:0;
+    bottom:0;
+    
+    opacity:0;
+    cursor:pointer;
+    
+    color:rgba(0, 120, 250, 1);
+    background:rgba(0, 120, 250, 1);
+   
+  }
+  
+  input[type="date"]:hover::-webkit-calendar-picker-indicator { opacity:0.05; }
+  input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15; } */
+
+.row-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row-flex .card {
+    height:100%;
+}
+
+.lead {
+  font-size: 2em !important;
+  font-weight: bold !important;
+}
+
+/* .css-khvgs2-MuiTableHead-root .MuiTableCell-root {
+  background-color: orange !important;
+  border: 2px solid rgb(150, 150, 150) ;
+}
+
+.css-2r9z59-MuiTableCell-root {
+  border: 2px solid rgb(150, 150, 150) !important;
+} */
+
+
+
+
+.css-qvls4e {
+  padding-left: 0px !important;
+}
+
+.css-1x8alpq-MuiPaper-root-MuiAppBar-root {
+  left: 0px !important;
+  width: calc(100% - 0px) !important;
+}
+.card {
+  border-radius: 10px !important;
+}
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+.card-body {
+  padding:12px  20px !important;
+}
+
+.img-responsive {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.iiz__img {
+  height: 400px !important;
+  object-fit: contain !important;
+}
+
+.css-2wu3h2-MuiTypography-root {
+  font-size: 1.3em !important;
+}
+
+.form-select, .form-control {
+  border: 2px solid #1a1e27 !important;
+}
+
+.text-upper {
+  text-transform: uppercase;
+  /* border-bottom: 2px solid #000; */
+}
+
+.text-upper::after {
+  content: "";
+  width: 380px;
+  height: 2px;
+  background-color: #000;
+  margin: auto;
+  display: block;
+}
+
+
+
+
+table th {
+  background-color: #5F9DF7 !important;
+}
+
+.css-khvgs2-MuiTableHead-root .MuiTableCell-root, .css-2r9z59-MuiTableCell-root {
+  padding: 8px 20px !important;
+}
+
+
+table, th, td {
+  border: 2px solid rgb(150, 150, 150) !important;
+  text-align: center !important;
+}
+
+.MUIDataTableHeadCell-contentWrapper-140 {
+  justify-content:center !important;
+}
+
+.css-1ew0fbc {
+  left: 0px !important;
+  width: calc(100% - 0px) !important;
+}
+
+table tr th span {
+  justify-content: center !important;
+}
+
+.MuiCardHeader-root {
+  padding: 10px !important;
+}
+
+.css-xu1r15-MuiCardContent-root {
+  padding: 10px !important;
+}
+
+/* .MUIDataTable-responsiveBase-5 {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+} */
+
+
+.iiz__img {
+  height: 500px !important;
+}
+
+table tr td {
+  font-size: 1.1em !important;
+  font-weight: 600 !important;
+}
+
+table thead tr th span button div {
+  font-size: 1.1em !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+.hover-class .card:hover {
+  cursor:pointer !important;
+}
+
+
+.css-nw5nzo {
+  padding: 18px !important;
+}
