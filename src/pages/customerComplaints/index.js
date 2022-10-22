@@ -498,7 +498,7 @@ const Index = () => {
         setDataLoading(true)
         let Arraydata = [];
         let finalData = Math.ceil(parseInt(focData.totalCount) / 5000);
-        for(let i=0; i<finalData; i++) {
+        for(let i=0; i<5; i++) {
             setCount(i * 5000)
             let data = {
                 startDate:startDate,
@@ -561,7 +561,7 @@ const Index = () => {
                         </div>
                     </div>
                     <div className="row align-items-end">
-                        <div className="col-lg-2 mb-2">
+                        {/* <div className="col-lg-2 mb-2">
                             <label htmlFor="">Category</label>
                             <select onChange={(e) => {
                                 setCategory(e.target.value);
@@ -576,7 +576,7 @@ const Index = () => {
                                 <option value="INDUSTRIAL">INDUSTRIAL</option>
                                 <option value="MIX">MIX</option>
                             </select>
-                        </div>
+                        </div> */}
                         <div className="col-lg-2 mb-2">
                             <label htmlFor="">Circle</label>
                             <select onChange={(e) => {
@@ -796,62 +796,7 @@ const Index = () => {
                                             sort: true,
                                         }
                                     },
-                                    {
-                                        name: "ss_name",
-                                        label: "Ss Name",
-                                        options: {
-                                            filter: true,
-                                            sort: true,
-                                        }
-                                    },
-                                    {
-                                        name: "feeder_name",
-                                        label: "Feeder name",
-                                        options: {
-                                            filter: true,
-                                            sort: true,
-                                        }
-                                    },
-                                    {
-                                        name: "feeder_cat",
-                                        label: "Feeder Cat",
-                                        options: {
-                                            filter: true,
-                                            sort: true,
-                                        }
-                                    },
-                                    {
-                                        name: "feeder_type",
-                                        label: "Feeder Type",
-                                        options: {
-                                            filter: true,
-                                            sort: true,
-                                        }
-                                    },
-                                    {
-                                        name: "block_name",
-                                        label: "Block Name",
-                                        options: {
-                                            filter: true,
-                                            sort: true,
-                                        }
-                                    },
-                                    {
-                                        name: "area_name",
-                                        label: "Area Name",
-                                        options: {
-                                            filter: true,
-                                            sort: true,
-                                        }
-                                    },
-                                    {
-                                        name: "colony_name",
-                                        label: "Colony Name",
-                                        options: {
-                                            filter: true,
-                                            sort: true,
-                                        }
-                                    },
+                                    
                                     {
                                         name: "full_complaint_id",
                                         label: "Full Complaint id",
@@ -869,8 +814,8 @@ const Index = () => {
                                         }
                                     },
                                     {
-                                        name: "type",
-                                        label: "Type",
+                                        name: "sub_category",
+                                        label: "Sub category",
                                         options: {
                                             filter: true,
                                             sort: true,

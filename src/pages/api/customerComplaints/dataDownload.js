@@ -7,7 +7,7 @@ export default async function handler(req, response) {
       let query2 = {}
       let page = req.query.page;
       const { database } = await connectToDatabase();
-      const collection = database.collection("bill_complaint")
+      const collection = database.collection("bill_complaint_ivrs_mobileno")
 
       if (req.body.startDate && req.body.startDate != null) {
         query = {...query, "complaint_reg_dt": {$gte:new Date(req.body.startDate)}};
@@ -57,13 +57,6 @@ export default async function handler(req, response) {
                     "division_name": 1,
                     "subdivision_name":1,
                     "dc_name": 1,
-                    "ss_name": 1,
-                    "feeder_name": 1,
-                    "feeder_cat": 1,
-                    "feeder_type": 1,
-                    "block_name": 1,
-                    "area_name": 1,
-                    "colony_name": 1,
                     "full_complaint_id": 1,
                     "complaint_reg_dt": 1,
                     "closed_ts": 1,
