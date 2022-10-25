@@ -399,35 +399,6 @@ const headers = [
       key: "dc_name"
     },
     {
-      label: "ss_name",
-      key: "ss_name"
-    },
-    {
-      label: "feeder_name",
-      key: "feeder_name"
-    },
-    {
-    label: "feeder_cat",
-    key: "feeder_cat"
-    },
-    {
-    label: "feeder_type",
-    key: "feeder_type"
-    },
-    {
-    label: "block_name",
-    key: "block_name"
-    },
-    {
-    label: "area_name",
-    key: "area_name"
-    },
-    {
-    label: "colony_name",
-    key: "colony_name"
-    },
-
-    {
     label: "full_complaint_id",
     key: "full_complaint_id"
     },
@@ -498,7 +469,10 @@ const Index = () => {
         setDataLoading(true)
         let Arraydata = [];
         let finalData = Math.ceil(parseInt(focData.totalCount) / 5000);
-        for(let i=0; i<5; i++) {
+        if(finalData > 5) {
+            finalData = 5;
+        }
+        for(let i=0; i<finalData; i++) {
             setCount(i * 5000)
             let data = {
                 startDate:startDate,
@@ -522,7 +496,6 @@ const Index = () => {
         setExcelReady(true)
         let button = document.getElementById('dn-btn')
         button.click();
-        
     }
 
     return (
@@ -588,13 +561,16 @@ const Index = () => {
                                             circle_name:e.target.value,division_name:divisionName,subdivision_name:subdivision,minutes:minutes}))
                             }} className="form-select" aria-label="Default select example">
                                 <option selected value="">Select Circle</option>
-                                {circleData.map((item,i) => (
+                                {/* {circleData.map((item,i) => (
                                         item._id == category 
                                         ?
                                             item.list.map((area) => <option key={i} value={area}>{area}</option>)
                                         :
                                         null
                                     
+                                ))} */}
+                                {circleData.map((item,i) => (
+                                    item.list.map((area) => <option key={i} value={area}>{area}</option>)
                                 ))}
                                 
                             </select>

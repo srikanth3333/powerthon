@@ -11,6 +11,8 @@ import {getFocData,getFocGraphData} from "../../redux/focComplaint/focComplaintS
 import {useDispatch,useSelector} from "react-redux";
 import DatePicker from "react-datepicker";
 import { CSVLink } from "react-csv";
+import CountUp from 'react-countup';
+import axios from 'axios';
 
 
 let circleData = [
@@ -468,6 +470,9 @@ const Index = () => {
     let [divisionName,setDivisionName] = useState('')
     let [subdivision,setSubdivision] = useState('')
     const [minutes, setMinutes] = useState('')
+    let [downloadDataArray,setDownloadDataArray] = useState([]);
+    let [dataLoading,setDataLoading] = useState(false)
+    let [count,setCount] = useState(0)
 
     let dispatch = useDispatch()
 
@@ -478,6 +483,38 @@ const Index = () => {
 
     const TableHeader = () => {
        return( <></>)
+    }
+
+    const downloadData = async () => {
+        setDataLoading(true)
+        let Arraydata = [];
+        let finalData = Math.ceil(parseInt(focData.totalCount) / 5000);
+        if(finalData > 5) {
+            finalData = 5;
+        }
+        for(let i=0; i<finalData; i++) {
+            setCount(i * 5000)
+            let data = {
+                startDate:startDate,
+                endDate:endDate,
+                category:category,
+                circle_name:circleName,
+                division_name:divisionName,
+                subdivision_name:subdivision,
+                minutes:minutes,
+            }
+            await axios.post(`/api/focComplaints/dataDownload?page=${i}`,data)
+            .then(res => {
+                Arraydata.push(...res.data.data)
+            })
+            .catch(err => {
+                console.log(JSON.stringify(err))
+            })   
+        }
+        setDownloadDataArray(Arraydata)
+        setDataLoading(false)
+        let button = document.getElementById('dn-btn')
+        button.click();
     }
 
 
@@ -503,6 +540,20 @@ const Index = () => {
                                 <div className="card-body">
                                     <h2>Total Count</h2>
                                     <h6 className="main-num">{focData.totalCount}</h6>
+                                    {
+                                            dataLoading == true 
+                                        ?
+                                            <>
+                                                
+                                                <h6><CountUp start={count} end={count} /> / {focData.totalCount} Records Downloaded</h6>
+                                                <div className="progress mb-1">
+                                                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={count} aria-valuemin="0" aria-valuemax={focData.totalCount} style={{width: `${Math.ceil(count / focData.totalCount * 100)}%`}}></div>
+                                                </div>
+                                                <h6 >{Math.ceil(count / focData.totalCount * 100)}% </h6>
+                                            </>
+                                        :
+                                            <button className="btn btn-success" onClick={() => downloadData()}>Download Data</button>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -623,22 +674,18 @@ const Index = () => {
                                 }} className="form-control" />
                         </div>
                         <div className="col-lg-2 mb-2">
-                                {
-                                    focData.loadingDownload == true
-                                    ?
-                                        <p>Loading data to excel download...</p>
-                                    :
                                         <CSVLink
+                                                
                                                 filename={`${Math.floor((Math.random() * 100) + 1)}.xls`}
-                                                data={focData && focData.downloadData.length > 0 ? focData.downloadData : []}
+                                                // data={focData.downloadData}
+                                                data={downloadDataArray}
                                                 asyncOnClick={true}
-                                                className="btn btn-primary btn-sm"
+                                                className="btn btn-primary btn-sm d-none"
                                                 headers={headers}
+                                                id="dn-btn"
                                             >
                                             Download Excel
                                         </CSVLink>
-                                        // null
-                                }
                         </div>
                     </div>
                     <div className="row mt-4">
