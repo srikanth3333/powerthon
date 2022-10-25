@@ -375,10 +375,6 @@ let subdivisionData = [
 
 const headers = [
     {
-        label: "_id",
-        key: "_id"
-    },
-    {
       label: "region_name",
       key: "region_name"
     },
@@ -407,8 +403,12 @@ const headers = [
     key: "complaint_reg_dt"
     },
     {
-    label: "closed_ts",
-    key: "closed_ts"
+        label: "closed_ts",
+        key: "closed_ts"
+    },
+    {
+        label: "delay",
+        key: "delay"
     },
     {
         label: "category",
@@ -426,14 +426,6 @@ const headers = [
                     label: "ivrs",
                     key: "ivrs"
                     },
-                    {
-                        label: "minutes",
-                        key: "minutes"
-                        },
-                        {
-                            label: "hours",
-                            key: "hours"
-                            },
 ]
 
 const Index = () => {
@@ -485,6 +477,8 @@ const Index = () => {
             }
             await axios.post(`/api/customerComplaints/dataDownload?page=${i}`,data)
             .then(res => {
+                console.log('res')
+                console.log(res)
                 Arraydata.push(...res.data.data)
             })
             .catch(err => {
@@ -494,6 +488,8 @@ const Index = () => {
         setDownloadDataArray(Arraydata)
         setDataLoading(false)
         setExcelReady(true)
+        console.log('Arraydata')
+        console.log(Arraydata)
         let button = document.getElementById('dn-btn')
         button.click();
     }
@@ -519,7 +515,7 @@ const Index = () => {
                                         ?
                                             <>
                                                 
-                                                <h6><CountUp start={count - 5000} end={count} /> / {focData.totalCount} Records Downloaded</h6>
+                                                <h6><CountUp start={count} end={count} /> / {focData.totalCount} Records Downloaded</h6>
                                                 <div className="progress mb-1">
                                                     <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={count} aria-valuemin="0" aria-valuemax={focData.totalCount} style={{width: `${Math.ceil(count / focData.totalCount * 100)}%`}}></div>
                                                 </div>
@@ -718,7 +714,7 @@ const Index = () => {
                                     },
                                     
                                     {
-                                        name: "minutes",
+                                        name: "delay",
                                         label: "Duration(minutes)",
                                         options: {
                                             filter: true,

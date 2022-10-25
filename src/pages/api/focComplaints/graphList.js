@@ -2,7 +2,7 @@ import { connectToDatabase } from "../../../lib/mongodb";
 
 export default async function handler(req, response) {
     const { database } = await connectToDatabase();
-    const collection = database.collection("foc_complaint")
+    const collection = database.collection("FOC_ivrs_mobileno")
     if(req.method === "POST"){
       let query = {}
 

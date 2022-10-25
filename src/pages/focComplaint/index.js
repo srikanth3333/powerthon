@@ -436,6 +436,10 @@ const headers = [
     key: "closed_ts"
     },
     {
+        label: "ivrs",
+        key: "ivrs"
+    },
+    {
         label: "category",
         key: "category"
         },
@@ -737,6 +741,15 @@ const Index = () => {
                                                     </>
                                                 )
                                             }
+                                        }
+                                    },
+                                    
+                                    {
+                                        name: "ivrs",
+                                        label: "ivrs",
+                                        options: {
+                                            filter: true,
+                                            sort: true,
                                         }
                                     },
                                     {

@@ -4,7 +4,6 @@ export default async function handler(req, response) {
     
     if(req.method == "POST") {
       let query = {}
-      let query2 = {}
       let page = req.query.page;
       const { database } = await connectToDatabase();
       const collection = database.collection("bill_complaint_ivrs_mobileno")
@@ -42,41 +41,37 @@ export default async function handler(req, response) {
       }
 
       if(req.body.minutes) {
-        query2 = {...query2, "minutes": {$gte:req.body.minutes}}
+        query = {...query, "delay": {$gte:parseInt(req.body.minutes)}}
       }
+
+
+      console.log(query)
 
       let data = await collection.aggregate(
         [
             {$match:query},
-            {$skip:page*5000},
             {$limit:5000},
+            {$skip:page*5000},
             {$project: {
-
-                    "region_name": 1,
-                    "circle_name": 1,
-                    "division_name": 1,
-                    "subdivision_name":1,
-                    "dc_name": 1,
-                    "full_complaint_id": 1,
-                    "complaint_reg_dt": 1,
-                    "closed_ts": 1,
-                    "category": 1,
-                    "type": 1,
-                    "circle_name":1,
-                    "ivrs":1,
-                    "minutes": {
-                        $trunc: {
-                                $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 60000]
-                         }
-                    },
-                    "hours": {
-                      $trunc: {
-                              $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 3600000]
-                       }
-                    },
-                },
+                _id: 0,
+                "region_name": 1,
+                "circle_name": 1,
+                "division_name": 1,
+                "subdivision_name":1,
+                "dc_name": 1,
+                "full_complaint_id": 1,
+                "complaint_reg_dt": 1,
+                "closed_ts": 1,
+                "category": 1,
+                "type": 1,
+                "circle_name":1,
+                "ivrs":1,
+                "minutes":1,
+                "sub_category":1,
+                "delay":1,
+              },
             },
-            {$match:{$and:[query2,query]}},
+            {$sort:{"delay":1}}
         ]).toArray();
       response.status(200).json({data: data});
     }

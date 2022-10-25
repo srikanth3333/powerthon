@@ -7,7 +7,7 @@ export default async function handler(req, response) {
       let query2 = {}
       let page = req.query.page;
       const { database } = await connectToDatabase();
-      const collection = database.collection("foc_complaint")
+      const collection = database.collection("FOC_ivrs_mobileno")
 
       if (req.body.startDate && req.body.startDate != null) {
         query = {...query, "complaint_reg_dt": {$gte:new Date(req.body.startDate)}};
@@ -70,6 +70,7 @@ export default async function handler(req, response) {
                     "category": 1,
                     "type": 1,
                     "circle_name":1,
+                    "ivrs":1,
                     "minutes": {
                         $trunc: {
                                 $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 60000]
