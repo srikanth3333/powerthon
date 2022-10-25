@@ -644,7 +644,7 @@ const Index = () => {
                                 }} className="form-control" />
                         </div>
                         <div className="col-lg-2 mb-2">
-                            <label htmlFor="">Resolution time (Min.)</label>
+                            <label htmlFor="">Resolution time > (Min.)</label>
                             <input type="number" placeholder="Resolution time > (Min.)" min={1} className="form-control" onChange={(e) =>{
                                 setMinutes(e.target.value);
                                 dispatch(getComplaints({page:0,startDate:startDate,endDate:endDate,category:category,
