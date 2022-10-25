@@ -48,8 +48,8 @@ export default async function handler(req, response) {
       let data = await collection.aggregate(
         [
             {$match:query},
-            {$limit:20},
             {$skip:page*20},
+            {$limit:20},
             {$project: {
                 _id: 1,
                 "region_name": 1,
