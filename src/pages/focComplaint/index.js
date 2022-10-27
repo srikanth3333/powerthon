@@ -447,16 +447,8 @@ const headers = [
             label: "type",
             key: "type"
             },
-            {
-                label: "circle_name",
-                key: "circle_name"
-                },
-                {
-                    label: "ivrs",
-                    key: "ivrs"
-                    },
                     {
-                        label: "delay",
+                        label: "Duration",
                         key: "delay"
                         },
 ]

@@ -73,6 +73,7 @@ export default async function handler(req, response) {
                   "circle_name":1,
                   "ivrs":1,
                   "delay":1,
+                  "sub_category":1,
               },
           },
         ]).toArray();

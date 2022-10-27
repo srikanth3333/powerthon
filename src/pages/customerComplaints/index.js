@@ -395,37 +395,37 @@ const headers = [
       key: "dc_name"
     },
     {
-    label: "full_complaint_id",
-    key: "full_complaint_id"
+        label: "full_complaint_id",
+        key: "full_complaint_id"
     },
     {
-    label: "complaint_reg_dt",
-    key: "complaint_reg_dt"
+        label: "complaint_reg_dt",
+        key: "complaint_reg_dt"
     },
     {
         label: "closed_ts",
         key: "closed_ts"
     },
     {
-        label: "delay",
+        label: "Duration",
         key: "delay"
     },
     {
         label: "category",
         key: "category"
-        },
-        {
-            label: "type",
-            key: "type"
-            },
-            {
-                label: "circle_name",
-                key: "circle_name"
-                },
-                {
-                    label: "ivrs",
-                    key: "ivrs"
-                    },
+    },
+    {
+        label: "Sub Category",
+        key: "sub_category"
+    },
+    {
+        label: "circle_name",
+        key: "circle_name"
+    },
+    {
+        label: "ivrs",
+        key: "ivrs"
+    },
 ]
 
 const Index = () => {
@@ -499,7 +499,7 @@ const Index = () => {
         <>
             <Head>
                 <title>
-                    Foc Complaints
+                    Billing Complaints
                 </title>
             </Head>
             <Box component="main">
