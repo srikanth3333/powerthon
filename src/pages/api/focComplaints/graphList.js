@@ -43,19 +43,8 @@ export default async function handler(req, response) {
       let barGraphData = await collection.aggregate(
         [
           {$match:query},
-          {
-            $project: {
-            _id: 0,
-            "circle_name":"$circle_name",
-            dayssince: {
-                $trunc: {
-                        $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 1000 * 60 * 60 * 24]
-                    }
-                }
-            }
-          },
-          {$group: {_id:"$circle_name",count:{$sum:"$dayssince"}}},
-          {$sort:{count:-1}}
+          {$group: {_id:"$circle_name",count:{$sum:"$delay"}}},
+          {$sort:{count:1}}
      ]).toArray();
       response.status(200).json(barGraphData);
     }

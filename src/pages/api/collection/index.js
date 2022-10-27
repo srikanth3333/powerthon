@@ -5,10 +5,10 @@ const { ObjectId } = require('mongodb');
 export default async function handler(req, response) {
     
     const { database } = await connectToDatabase();
-    const collection = database.collection("bill_complaint_ivrs_mobileno")
+    const collection = database.collection("FOC_ivrs_mobileno")
     let query = {}
     
-    // await collection.find(query).limit(20000).skip(151031).toArray(async (err, result) => {
+    // await collection.find({},{projection:{_id:1}}).skip(1800010).limit(200000).toArray(async (err, result) => {
     //   if (err) throw err;
     //   let count = 0;
     //   result.map(async (item) => {

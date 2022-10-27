@@ -47,29 +47,34 @@ export default async function handler(req, response) {
       let totalCount = await collection.find(query).count();
       let data = await collection.aggregate(
         [
-            {$match:query},
-            {$skip:page*20},
-            {$limit:20},
-            {$project: {
-                _id: 1,
-                "region_name": 1,
-                "circle_name": 1,
-                "division_name": 1,
-                "subdivision_name":1,
-                "dc_name": 1,
-                "full_complaint_id": 1,
-                "complaint_reg_dt": 1,
-                "closed_ts": 1,
-                "category": 1,
-                "type": 1,
-                "circle_name":1,
-                "ivrs":1,
-                "minutes":1,
-                "sub_category":1,
-                "delay":1,
+          {$match:query},
+          {$skip:page*20},
+          {$limit:20},
+          {
+            $project: {
+                  _id: 0,
+                  "region_name": 1,
+                  "circle_name": 1,
+                  "division_name": 1,
+                  "subdivision_name":1,
+                  "dc_name": 1,
+                  "ss_name": 1,
+                  "feeder_name": 1,
+                  "feeder_cat": 1,
+                  "feeder_type": 1,
+                  "block_name": 1,
+                  "area_name": 1,
+                  "colony_name": 1,
+                  "full_complaint_id": 1,
+                  "complaint_reg_dt": 1,
+                  "closed_ts": 1,
+                  "category": 1,
+                  "type": 1,
+                  "circle_name":1,
+                  "ivrs":1,
+                  "delay":1,
               },
-            },
-            {$sort:{"delay":1}}
+          },
         ]).toArray();
       response.status(200).json({totalCount: totalCount,data: data});
     }

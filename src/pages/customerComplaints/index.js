@@ -491,8 +491,8 @@ const Index = () => {
         setExcelReady(true)
         console.log('Arraydata')
         console.log(Arraydata)
-        // let button = document.getElementById('dn-btn')
-        // button.click();
+        let button = document.getElementById('dn-btn')
+        button.click();
     }
 
     return (

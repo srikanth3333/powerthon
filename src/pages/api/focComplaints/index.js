@@ -8,7 +8,6 @@ export default async function handler(req, response) {
     const collection = database.collection("FOC_ivrs_mobileno")
     if(req.method === "POST") {
       let query = {}
-      let query2 = {}
       let page = req.query.page;
   
       if (req.body.startDate && req.body.startDate != null) {
@@ -43,10 +42,10 @@ export default async function handler(req, response) {
         query = {...query, "complaint_reg_dt": {$gte:new Date(req.body.startDate),$lte:new Date(req.body.endDate)}};
       }
       if(req.body.minutes) {
-        query2 = {...query2, "minutes": {$gte:req.body.minutes}}
+        query = {...query, "delay": {$gte:parseInt(req.body.minutes)}}
       }
 
-      console.log(query)
+      
       let totalCount = await collection.find(query).count();
       let data = await collection.aggregate(
         [
@@ -75,20 +74,10 @@ export default async function handler(req, response) {
                     "type": 1,
                     "circle_name":1,
                     "ivrs":1,
-                    "minutes": {
-                        $trunc: {
-                                $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 60000]
-                         }
-                    },
-                    "hours": {
-                      $trunc: {
-                              $divide: [{ $abs : {$subtract: ["$complaint_reg_dt", '$closed_ts'] }}, 3600000]
-                       }
-                    },
+                    "delay":1,
                 },
             },
-            {$match:{$and:[query2,query]}},
-            {$sort:{"minutes":1}}
+            {$sort:{"delay":1}}
         ]).toArray();
       response.status(200).json({totalCount: totalCount,data:data});
     }

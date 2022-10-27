@@ -456,13 +456,9 @@ const headers = [
                     key: "ivrs"
                     },
                     {
-                        label: "minutes",
-                        key: "minutes"
+                        label: "delay",
+                        key: "delay"
                         },
-                        {
-                            label: "hours",
-                            key: "hours"
-                            },
 ]
 const Index = () => {
 
@@ -641,14 +637,7 @@ const Index = () => {
                                 ))}
                             </select>
                         </div>
-                        <div className="col-lg-2 mb-2">
-                            <label htmlFor="">Time Select</label>
-                            <input type="number" placeholder="select time" min={1} className="form-control" onChange={(e) =>{
-                                setMinutes(e.target.value);
-                                dispatch(getFocData({page:0,startDate:startDate,endDate:endDate,category:category,
-                                    circle_name:circleName,division_name:divisionName,subdivision_name:subdivision,minutes:parseInt(e.target.value)}))
-                            }} />
-                        </div>
+                        
                         <div className="col-lg-2 mb-2">
                             <label htmlFor="">Complaint Reg Start Date</label>
                             <DatePicker 
@@ -676,6 +665,14 @@ const Index = () => {
                                     dispatch(getFocGraphData({startDate:startDate,endDate:date,category:category,
                                         circle_name:circleName,division_name:divisionName,subdivision_name:subdivision}))                                            
                                 }} className="form-control" />
+                        </div>
+                        <div className="col-lg-2 mb-2">
+                            <label htmlFor="">Resolution time {`>`} (Min.)</label>
+                            <input type="number" placeholder="Resolution time {`>`} (Min.)" min={1} className="form-control" onChange={(e) =>{
+                                setMinutes(e.target.value);
+                                dispatch(getFocData({page:0,startDate:startDate,endDate:endDate,category:category,
+                                    circle_name:circleName,division_name:divisionName,subdivision_name:subdivision,minutes:parseInt(e.target.value)}))
+                            }} />
                         </div>
                         <div className="col-lg-2 mb-2">
                                         <CSVLink
@@ -728,7 +725,7 @@ const Index = () => {
                                         }
                                     },
                                     {
-                                        name: "minutes",
+                                        name: "delay",
                                         label: "Duration (minutes)",
                                         options: {
                                             filter: true,
