@@ -477,6 +477,18 @@ const Index = () => {
        return( <></>)
     }
 
+    const clearFilters = () => {
+        setStartDate('')
+        setEndDate('')
+        setCategory('')
+        setCircleName('')
+        setDivisionName('')
+        setSubdivision('')
+        setMinutes('')
+        dispatch(getFocData({page:0,startDate:'',endDate:'',category:'',circle_name:'',division_name:'',subdivision_name:'',minutes:''}))
+        dispatch(getFocGraphData({startDate:'',endDate:'',category:'',circle_name:'',division_name:'',subdivision_name:'',}))
+    }
+
     const downloadData = async () => {
         setDataLoading(true)
         let Arraydata = [];
@@ -550,7 +562,7 @@ const Index = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row align-items-center">
                         <div className="col-lg-2 mb-2">
                             <label htmlFor="">Category</label>
                             <select onChange={(e) => {
@@ -666,10 +678,13 @@ const Index = () => {
                                     circle_name:circleName,division_name:divisionName,subdivision_name:subdivision,minutes:parseInt(e.target.value)}))
                             }} />
                         </div>
+                        <div className="col-lg-4">
+                            <button className="btn btn-danger" onClick={() => clearFilters()}>Clear all filters</button>
+                        </div>
                         <div className="col-lg-2 mb-2">
                                         <CSVLink
                                                 
-                                                filename={`${Math.floor((Math.random() * 100) + 1)}.xls`}
+                                                filename={`${Math.floor(Math.random() * new Date())}.xls`}
                                                 // data={focData.downloadData}
                                                 data={downloadDataArray}
                                                 asyncOnClick={true}

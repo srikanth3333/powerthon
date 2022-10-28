@@ -9,7 +9,7 @@ export default async function handler(req, response) {
       let page = req.query.page;
   
       if (req.body.startDate && req.body.startDate != null) {
-        query = {...query, "created_on": {$gte:new Date(req.body.startDate)}};
+        query = {...query, "bill_month": {$gt:new Date(req.body.startDate)}};
       }
   
       if(req.body.consumer_no) {
@@ -17,11 +17,11 @@ export default async function handler(req, response) {
       }
   
       if (req.body.endDate && req.body.endDate != null) {
-        query = {...query, "created_on": {$lte:new Date(req.body.endDate)}};
+        query = {...query, "bill_month": {$lt:new Date(req.body.endDate)}};
       }
   
       if(req.body.startDate && req.body.endDate && req.body.startDate != null && req.body.endDate != null) {
-        query = {...query, "created_on": {$gte:new Date(req.body.startDate),$lte:new Date(req.body.endDate)}};
+        query = {...query, "bill_month": {$gt:new Date(req.body.startDate),$lt:new Date(req.body.endDate)}};
       }
 
 
