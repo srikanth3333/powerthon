@@ -776,6 +776,8 @@ const Index = () => {
         // setExcelReady(true)
         let button = document.getElementById('dn-btn')
         button.click();
+        downloadDataArray.length = 0
+        setDownloadDataArray([])
     }
 
 
@@ -842,12 +844,11 @@ const Index = () => {
                             <label html
                             For="">Division</label>
                             <select onChange={(e) => {
-                                
+                                console.log(e.target.value)
                                 setDivisionName(e.target.value);
                                 dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:circleName,division_name:e.target.value,region:region,divisionId:divisionId}))
                             }} className="form-select" aria-label="Default select example">
                                 <option selected value="">Select Division</option>
-                                
                                 <option value="Bhopal City East">Bhopal City East</option>
                                 <option value="Bhopal City North">Bhopal City North</option>
                                 <option value="Bhopal City South">Bhopal City South</option>

@@ -7,7 +7,7 @@ export const getBlillingData = createAsyncThunk('billing/getBlillingData',
             startDate:payload.startDate,
             endDate:payload.endDate,
             consumer_no: payload.consumerNo != '' ? parseInt(payload.consumerNo) : payload.consumerNo,
-            division_name:payload.divisionName,
+            division_name:payload.division_name,
             region:payload.region,
             divisionId:payload.divisionId,
             circle_name:payload.circle_name
