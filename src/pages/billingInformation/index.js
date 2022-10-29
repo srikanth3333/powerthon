@@ -753,9 +753,9 @@ const Index = () => {
         setDataLoading(true)
         let Arraydata = [];
         let finalData = Math.ceil(parseInt(focData.totalCount) / 5000);
-        if(finalData > 5) {
-            finalData = 5;
-        }
+        // if(finalData > 5) {
+        //     finalData = 5;
+        // }
         for(let i=0; i<finalData; i++) {
             setCount(i * 5000)
             let data = {
