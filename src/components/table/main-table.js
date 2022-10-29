@@ -11,7 +11,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-
 const MUIDataTable = dynamic(() => import('mui-datatables'), { ssr: false });
 
 export const Table = (props) => {
@@ -61,7 +60,6 @@ export const Table = (props) => {
               break;
           }
         },
-        
       };
     }else {
       options = {

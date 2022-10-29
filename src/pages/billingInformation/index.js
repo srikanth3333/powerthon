@@ -14,6 +14,364 @@ import axios from 'axios';
 import CountUp from 'react-countup';
 import { CSVLink } from "react-csv";
 
+let circleData = [
+    {
+        "_id" : "MIX",
+        "list" : [ 
+            "O&M Circle Morena"
+        ]
+    },
+    {
+        "_id" : "INDUSTRIAL",
+        "list" : [ 
+            "City circle Bhopal", 
+            "O&M Circle Sehore"
+        ]
+    },
+    {
+        "_id" : "DOMESTIC",
+        "list" : [ 
+            "O&M Circle Rajgarh", 
+            "O&M Circle Datia", 
+            "O&M Circle Shivpuri", 
+            "O&M Circle Vidisha", 
+            "Narmadapuram", 
+            "O&M Circle Sheopur", 
+            "O&M Circle Ashoknagar", 
+            "O&M Circle Sehore", 
+            "O&M Circle Betul", 
+            "O&M Circle Morena", 
+            "O&M Circle Harda", 
+            "City circle Bhopal", 
+            "O&M Circle Bhind", 
+            "O&M Circle Raisen", 
+            "City Circle Gwalior", 
+            "O&M Circle Guna", 
+            "O&M Circle Bhopal"
+        ]
+    },
+    {
+        "_id" : "AGRICULTURE",
+        "list" : [ 
+            "O&M Circle Bhopal", 
+            "City circle Bhopal"
+        ]
+    }
+]
+
+let divisionData = [
+    {
+        "_id" : "O&M Circle Morena",
+        "list" : [ 
+            "O&M Division Morena-I"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Harda",
+        "list" : [ 
+            "O&M Division Harda North"
+        ]
+    },
+    {
+        "_id" : "City Circle Gwalior",
+        "list" : [ 
+            "City Division (South) Gwalior", 
+            "City Division (North) Gwalior", 
+            "City Division (Central) Gwalior", 
+            "City Division (East) Gwalior"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Guna",
+        "list" : [ 
+            "O&M Division Guna"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Bhopal",
+        "list" : [ 
+            "O&M Division Bhopal"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Rajgarh",
+        "list" : [ 
+            "O&M Division Rajgarh"
+        ]
+    },
+    {
+        "_id" : "City circle Bhopal",
+        "list" : [ 
+            "East DIvision Bhopal", 
+            "O&M Division Kolar", 
+            "South Division Bhopal", 
+            "West Division Bhopal", 
+            "North Division Bhopal"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Datia",
+        "list" : [ 
+            "O&M Division Datia", 
+            "O&M Division Seondha"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Bhind",
+        "list" : [ 
+            "O&M Division Bhind"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Raisen",
+        "list" : [ 
+            "O&M Division Raisen"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Sheopur",
+        "list" : [ 
+            "O&M Division Sheopur South"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Ashoknagar",
+        "list" : [ 
+            "O&M Division Ashoknagar"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Sehore",
+        "list" : [ 
+            "O&M Division Sehore"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Shivpuri",
+        "list" : [ 
+            "O&M Division Shivpuri 1"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Vidisha",
+        "list" : [ 
+            "O&M Division Vidisha"
+        ]
+    },
+    {
+        "_id" : "Narmadapuram",
+        "list" : [ 
+            "Narmadapuram"
+        ]
+    },
+    {
+        "_id" : "O&M Circle Betul",
+        "list" : [ 
+            "O&M Division Betul (South)"
+        ]
+    }
+]
+
+let subdivisionData = [
+    {
+        "_id" : "O&M Division Bhopal",
+        "list" : [ 
+            "Ratibad Subdivision"
+        ]
+    },
+    {
+        "_id" : "O&M Division Rajgarh",
+        "list" : [ 
+            "Rajgarh Subdivision"
+        ]
+    },
+    {
+        "_id" : "West Division Bhopal",
+        "list" : [ 
+            "Vallabh Nagar", 
+            "Shakti Nagar", 
+            "Shahpura", 
+            "Katara Hills", 
+            "Vidhya Nagar"
+        ]
+    },
+    {
+        "_id" : "South Division Bhopal",
+        "list" : [ 
+            "Bhadbada Zone", 
+            "Jahangirabad Zone", 
+            "T.T. Nagar Zone", 
+            "Kotra", 
+            "Arera Colony", 
+            "M.P. Nagar Zone"
+        ]
+    },
+    {
+        "_id" : "O&M Division Sehore",
+        "list" : [ 
+            "Sehore CIty Zone I", 
+            "Sehore City Zone II"
+        ]
+    },
+    {
+        "_id" : "City Division (Central) Gwalior",
+        "list" : [ 
+            "CSS ZONE", 
+            "CPSS Zone", 
+            "Baraghata Zone", 
+            "SKC Zone", 
+            "LAXMI GANJ ZONE"
+        ]
+    },
+    {
+        "_id" : "O&M Division Datia",
+        "list" : [ 
+            "Datia U"
+        ]
+    },
+    {
+        "_id" : "O&M Division Seondha",
+        "list" : [ 
+            "Seondha"
+        ]
+    },
+    {
+        "_id" : "O&M Division Betul (South)",
+        "list" : [ 
+            "Betul (T) 2 Zone", 
+            "Betul Town 1 Zone"
+        ]
+    },
+    {
+        "_id" : "City Division (South) Gwalior",
+        "list" : [ 
+            "Kampoo Zone", 
+            "Sikinder Kampoo Zone", 
+            "Golpahadia Zone"
+        ]
+    },
+    {
+        "_id" : "O&M Division Ashoknagar",
+        "list" : [ 
+            "Ashoknagar SubDivision"
+        ]
+    },
+    {
+        "_id" : "O&M Division Raisen",
+        "list" : [ 
+            "Raisen City Zone"
+        ]
+    },
+    {
+        "_id" : "O&M Division Morena-I",
+        "list" : [ 
+            "Duttpura Zone", 
+            "Ganeshpura zone", 
+            "Morena Urban Zone"
+        ]
+    },
+    {
+        "_id" : "City Division (East) Gwalior",
+        "list" : [ 
+            "Baradari Zone", 
+            "City centre Zone", 
+            "Morar Zone", 
+            "DD Nagar Zone", 
+            "Maharajpura Zone", 
+            "Thatipur Zone"
+        ]
+    },
+    {
+        "_id" : "East DIvision Bhopal",
+        "list" : [ 
+            "Chandbad Zone", 
+            "Karond", 
+            "Anand Nagar", 
+            "Ayodhya Zone", 
+            "Industrial Gate", 
+            "Bhanpur Zone"
+        ]
+    },
+    {
+        "_id" : "O&M Division Kolar",
+        "list" : [ 
+            "Misrod Town Zone", 
+            "Danishkunj City Zone"
+        ]
+    },
+    {
+        "_id" : "O&M Division Harda North",
+        "list" : [ 
+            "HARDA Town Zone"
+        ]
+    },
+    {
+        "_id" : "Narmadapuram",
+        "list" : [ 
+            "Narmadapuram Town-I", 
+            "Narmadapuram Town-II"
+        ]
+    },
+    {
+        "_id" : "City Division (North) Gwalior",
+        "list" : [ 
+            "Transport Nagar Zone", 
+            "Vinay Nagar Zone", 
+            "Tansen Zone", 
+            "Ladheri Zone", 
+            "Phool Bag Zone", 
+            "Birla Nagar"
+        ]
+    },
+    {
+        "_id" : "O&M Division Vidisha",
+        "list" : [ 
+            "Vidisha Urban Subdivision-II", 
+            "Vidisha Urban Subdivision-I", 
+            "Vidisha Rural Sub division"
+        ]
+    },
+    {
+        "_id" : "O&M Division Sheopur South",
+        "list" : [ 
+            "Sheopur urban subdivision"
+        ]
+    },
+    {
+        "_id" : "North Division Bhopal",
+        "list" : [ 
+            "Imamigate Zone", 
+            "Bus Stand Zone", 
+            "Sultaniya Zone", 
+            "Chhola Zone", 
+            "City Kotwali", 
+            "Bairagarh", 
+            "Indravihar"
+        ]
+    },
+    {
+        "_id" : "O&M Division Bhind",
+        "list" : [ 
+            "Bhind Water Work City Zone", 
+            "Bhind ITI City Zone"
+        ]
+    },
+    {
+        "_id" : "O&M Division Guna",
+        "list" : [ 
+            "Guna Cantt.", 
+            "Guna City Zone"
+        ]
+    },
+    {
+        "_id" : "O&M Division Shivpuri 1",
+        "list" : [ 
+            "Shivpuri Town-East", 
+            "Shivpuri Town-West"
+        ]
+    }
+]
+
 const headers = [
     {
         "label": "id",
@@ -262,7 +620,23 @@ const headers = [
     {
         "label": "updated_on",
         "key": "updated_on"
-    }
+    },
+    {
+        "label": "Div_Id",
+        "key": "Div_Id"
+    },
+    {
+        "label": "Division",
+        "key": "Division"
+    },
+    {
+        "label": "Circle",
+        "key": "Circle"
+    },
+    {
+        "label": "Region",
+        "key": "Region"
+    },
 ]
 
 const Index = () => {
@@ -274,11 +648,15 @@ const Index = () => {
     let [downloadDataArray,setDownloadDataArray] = useState([]);
     let [dataLoading,setDataLoading] = useState(false)
     let [count,setCount] = useState(0)
+    let [circleName,setCircleName] = useState('')
+    let [divisionName,setDivisionName] = useState('')
+    let [region,setRegion] = useState('')
+    let [divisionId,setDivisionId] = useState('')
 
     let dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getBlillingData({page:0,startDate:'',endDate:'',consumerNo:''}))
+        dispatch(getBlillingData({page:0,startDate:'',endDate:'',consumerNo:'',circle_name:'',division_name:'',region:'',divisionId:''}))
     },[])
 
     const TableHeader = () => (
@@ -289,9 +667,9 @@ const Index = () => {
         setDataLoading(true)
         let Arraydata = [];
         let finalData = Math.ceil(parseInt(focData.totalCount) / 5000);
-        // if(finalData > 5) {
-        //     finalData = 5;
-        // }
+        if(finalData > 5) {
+            finalData = 5;
+        }
         for(let i=0; i<finalData; i++) {
             setCount(i * 5000)
             let data = {
@@ -353,6 +731,57 @@ const Index = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-2 mb-2">
+                            <label htmlFor="">Division Id</label>
+                            <input type="number" placeholder="Enter diviosn Id" min={1} className="form-control" onChange={(e) =>{
+                                setDivisionId(e.target.value);
+                                dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:circleName,division_name:divisionName,region:region,divisionId:e.target.value}))
+                            }} />
+                        </div>
+                        <div className="col-lg-2 mb-2">
+                            <label htmlFor="">Circle</label>
+                            <select onChange={(e) => {
+                                console.log(e.target.value)
+                                setCircleName(e.target.value);
+                                dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:e.target.value,division_name:divisionName,region:region,divisionId:divisionId}))
+                            }} className="form-select" aria-label="Default select example">
+                                <option selected value="">Select Circle</option>
+                                {circleData.map((item,i) => (
+                                    item.list.map((area) => <option key={i} value={area}>{area}</option>)
+                                ))}
+                                
+                            </select>
+                        </div>
+                        
+                        <div className="col-lg-2 mb-2">
+                            <label html
+                            For="">Division</label>
+                            <select onChange={(e) => {
+                                
+                                setDivisionName(e.target.value);
+                                dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:circleName,division_name:e.target.value,region:region,divisionId:divisionId}))
+                            }} className="form-select" aria-label="Default select example">
+                                <option selected value="">Select Division</option>
+                                {divisionData.map((item,i) => (
+                                    item._id == circleName 
+                                    ?
+                                        item.list.map((area) => <option key={i} value={area}>{area}</option>)
+                                    :
+                                    null
+                                ))}
+                            </select>
+                        </div>
+                        
+                        <div className="col-lg-2 mb-2">
+                            <label htmlFor="">Region</label>
+                            <select onChange={(e) => {
+                                setRegion(e.target.value);
+                                dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:circleName,division_name:divisionName,region:e.target.value,divisionId:divisionId}))
+                            }} className="form-select" aria-label="Default select example">
+                                <option selected value="">Select Subdivision</option>
+                                <option value="Bhopal">Bhopal</option>
+                            </select>
+                        </div>
+                        <div className="col-lg-2 mb-2">
                             <label htmlFor="">Start Date</label>
                             <DatePicker 
                                 selected={startDate}
@@ -360,7 +789,7 @@ const Index = () => {
                                 placeholderText='DD/MM/YYYY' 
                                 onSelect={(date) => {
                                     setStartDate(date)
-                                    dispatch(getBlillingData({page:0,startDate:date,endDate:endDate,consumerNo:consumerNo}))
+                                    dispatch(getBlillingData({page:0,startDate:date,endDate:endDate,consumerNo:consumerNo,divisionId:divisionId,circle_name:circleName,division_name:divisionName,region:region}))
                                 }} className="form-control" />
                         </div>
                         <div className="col-lg-2 mb-2">
@@ -371,14 +800,14 @@ const Index = () => {
                                 placeholderText='DD/MM/YYYY' 
                                 onSelect={(date) => {
                                     setEndDate(date)
-                                    dispatch(getBlillingData({page:0,startDate:startDate,endDate:date,consumerNo:consumerNo}))
+                                    dispatch(getBlillingData({page:0,startDate:startDate,endDate:date,consumerNo:consumerNo,divisionId:divisionId,circle_name:circleName,division_name:divisionName,region:region}))
                                 }} className="form-control" />
                         </div>
                         <div className="col-lg-2 mb-2">
                             <label htmlFor="">Consumer No</label>
                             <input type="number" placeholder="Enter consumer no" min={1} className="form-control" onChange={(e) =>{
                                 setConsumerNo(e.target.value);
-                                dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:e.target.value}))
+                                dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:e.target.value,circle_name:circleName,division_name:divisionName,region:region}))
                             }} />
                         </div>
                         <div className="col-lg-2 mb-2">
@@ -413,10 +842,11 @@ const Index = () => {
                                                 filter: true,
                                                 sort: true,
                                                 customBodyRender: (val,data) => {
+                                                    console.log()
                                                     return (
                                                         <>
                                                             {
-                                                                moment(val, moment.ISO_8601, true).isValid() && val != null
+                                                                moment(val, moment.ISO_8601, true).isValid() && val != null && typeof val !== 'number'
                                                                 ?
                                                                     <>
                                                                         <Moment format="DD/MM/YYYY">{val}</Moment> <br />

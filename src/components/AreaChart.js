@@ -1,6 +1,6 @@
-import { Chart, SeriesTemplate,ZoomAndPan, Export, CommonSeriesSettings,Tooltip } from 'devextreme-react/chart';
+import { Chart, SeriesTemplate,ZoomAndPan, Export, CommonSeriesSettings,Tooltip,Size } from 'devextreme-react/chart';
 import React from 'react';
-import {Box,CircularProgress,Typography} from "@mui/material";
+import {Box,CircularProgress,Typography,Card, CardContent, CardHeader} from "@mui/material";
 
 function AreaChart(props) {
 
@@ -11,6 +11,11 @@ function AreaChart(props) {
 
   return (
     <>
+    <Card {...props} mt={3}>
+      <CardHeader
+          title={props.title}
+      />
+    <CardContent>
       {
          props.loadingState
          ?
@@ -25,6 +30,10 @@ function AreaChart(props) {
                 onPointClick={onPointClick}
                 dataSource={props.data}
             >
+                 <Size
+                      height={600}
+                      width={'100%'}
+                  />
                 <CommonSeriesSettings
                     argumentField="_id"
                     valueField={"count"}
@@ -46,7 +55,8 @@ function AreaChart(props) {
                 
         </Chart>
       }
-        
+      </CardContent>
+    </Card>
     </>
   )
 }

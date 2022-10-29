@@ -40,6 +40,11 @@ export const DashboardSidebar = (props) => {
     //   title: 'Non Paying Consumer'
     // },
     {
+      href: '/complaintsAnalysis',
+      icon: (<ChartBarIcon fontSize="small" />),
+      title: 'Complaints Analysis'
+    },
+    {
       href: '/focComplaint',
       icon: (<ChartBarIcon fontSize="small" />),
       title: 'Foc Complaint Data'

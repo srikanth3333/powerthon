@@ -24,7 +24,7 @@ const PieChartGraph = (props) => {
     }
   
     function labelCustomized(arg) {
-      return `${arg.pointName} - Days: ${props.data && props.data[arg.pointIndex]?.count}`
+      return `${arg.pointName} - ${props.data && props.data[arg.pointIndex]?.count}`
     }
 
   return (
