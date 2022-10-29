@@ -21,7 +21,7 @@ export default async function handler(req, response) {
       }
 
       if(req.body.circle_name) {
-        query = {...query, "Circle": req.body.circle_name};
+        query = {...query, "Zone": req.body.circle_name};
       }
       
       if(req.body.division_name) {

@@ -637,6 +637,92 @@ const headers = [
         "label": "Region",
         "key": "Region"
     },
+    {
+        "label": "Zone",
+        "key": "Zone"
+    },
+]
+
+
+let divi =  [
+    {
+        "_id" : "Anand Nagar"
+    },
+    {
+        "_id" : "Ayodhya"
+    },
+    {
+        "_id" : "Bairagarh"
+    },
+    {
+        "_id" : "Bhadbhada"
+    },
+    {
+        "_id" : "Bhanpur"
+    },
+    {
+        "_id" : "Bus Stand"
+    },
+    {
+        "_id" : "Chandbarh"
+    },
+    {
+        "_id" : "Chhola"
+    },
+    {
+        "_id" : "City Kotwali"
+    },
+    {
+        "_id" : "Danish Kunj"
+    },
+    {
+        "_id" : "E-4 Arera Colony"
+    },
+    {
+        "_id" : "Imamigate"
+    },
+    {
+        "_id" : "Indra Vihar"
+    },
+    {
+        "_id" : "Industrial Gate"
+    },
+    {
+        "_id" : "Jahangirabad"
+    },
+    {
+        "_id" : "Karond"
+    },
+    {
+        "_id" : "Katara Hills"
+    },
+    {
+        "_id" : "Kotra"
+    },
+    {
+        "_id" : "MP Nagar"
+    },
+    {
+        "_id" : "Misrod"
+    },
+    {
+        "_id" : "Shahpura"
+    },
+    {
+        "_id" : "Shakti Nagar"
+    },
+    {
+        "_id" : "Sultaniya"
+    },
+    {
+        "_id" : "TT Nagar"
+    },
+    {
+        "_id" : "Vallabh Nagar"
+    },
+    {
+        "_id" : "Vidhya Nagar"
+    }
 ]
 
 const Index = () => {
@@ -738,16 +824,16 @@ const Index = () => {
                             }} />
                         </div>
                         <div className="col-lg-2 mb-2">
-                            <label htmlFor="">Circle</label>
+                            <label htmlFor="">Zone</label>
                             <select onChange={(e) => {
                                 console.log(e.target.value)
                                 setCircleName(e.target.value);
                                 dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:e.target.value,division_name:divisionName,region:region,divisionId:divisionId}))
                             }} className="form-select" aria-label="Default select example">
-                                <option selected value="">Select Circle</option>
-                                {circleData.map((item,i) => (
-                                    item.list.map((area) => <option key={i} value={area}>{area}</option>)
-                                ))}
+                                <option selected value="">Select Zone</option>
+                                {
+                                   divi.map((item, i) => <option key={i} value={item._id}>{item._id}</option>)
+                                }
                                 
                             </select>
                         </div>
@@ -761,13 +847,12 @@ const Index = () => {
                                 dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:circleName,division_name:e.target.value,region:region,divisionId:divisionId}))
                             }} className="form-select" aria-label="Default select example">
                                 <option selected value="">Select Division</option>
-                                {divisionData.map((item,i) => (
-                                    item._id == circleName 
-                                    ?
-                                        item.list.map((area) => <option key={i} value={area}>{area}</option>)
-                                    :
-                                    null
-                                ))}
+                                
+                                <option value="Bhopal City East">Bhopal City East</option>
+                                <option value="Bhopal City North">Bhopal City North</option>
+                                <option value="Bhopal City South">Bhopal City South</option>
+                                <option value="Bhopal City West">Bhopal City West</option>
+                                <option value="O&M KOLAR">O&M KOLAR</option>
                             </select>
                         </div>
                         
@@ -777,7 +862,7 @@ const Index = () => {
                                 setRegion(e.target.value);
                                 dispatch(getBlillingData({page:0,startDate:startDate,endDate:endDate,consumerNo:consumerNo,circle_name:circleName,division_name:divisionName,region:e.target.value,divisionId:divisionId}))
                             }} className="form-select" aria-label="Default select example">
-                                <option selected value="">Select Subdivision</option>
+                                <option selected value="">Select Region</option>
                                 <option value="Bhopal">Bhopal</option>
                             </select>
                         </div>

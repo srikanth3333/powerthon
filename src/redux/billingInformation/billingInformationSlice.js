@@ -11,7 +11,6 @@ export const getBlillingData = createAsyncThunk('billing/getBlillingData',
             region:payload.region,
             divisionId:payload.divisionId,
             circle_name:payload.circle_name
-
         }
         return await axios.post(`/api/billingInformation?page=${payload.page}`,data)
         .then(res => {
